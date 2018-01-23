@@ -8,7 +8,14 @@
     }
 
     protected function get() {
-      $posts = $this->postModel->getPostsWithCommentsCount();
+      if (isset($this->getData['page'])) {
+        $currentPage = $this->getData['page'];
+      } else {
+        $currentPage = 1;
+      }
+
+      $posts = $this->postModel->getPostsWithCommentsCount($currentPage);
+      $pageNumber = $this->postModel->pageNumber();
       require_once './view/index.php';
     }
   }

@@ -16,11 +16,26 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/?r=/addPost">add new post <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
+    <ul class="navbar-nav"><a href="/?r=/addPost">
+      <button type="button" class="btn btn-secondary">
+        add new post <span class="sr-only">(current)</span>
+      </button></a>&nbsp;&nbsp;<li></ul>
+      <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+  aria-haspopup="true" aria-expanded="false">
+    Sort By
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">Author</button>
+    <button class="dropdown-item" type="button">Date</button>
+    <button class="dropdown-item" type="button">title name</button>
+  </div>
+</div></li>&nbsp;&nbsp;
+
+  <b>Most recent comment:</b> <?php 
+
+  ?>
+
   </div>
 </nav>
 <br>
@@ -45,6 +60,25 @@
 	</div>
 	</div>
 		<?php } ?>
+    <nav>
+          <ul class="pagination">
+            <li class="page-item <?php if ($currentPage == 1) { echo 'active'; } ?>">
+              <a class="page-link" href="/index.php?r=/&page=1">First page</a>
+            </li>
+            <?php
+              $start = ($currentPage < 4) ? 1 : $currentPage - 3;
+              $stop = ($currentPage > $pageNumber - 3) ? $pageNumber : $currentPage + 3;
+
+              for($i = $start; $i <= $stop; $i++) { ?>
+              <li class="page-item <?php if ($i == $currentPage) { echo 'active'; } ?>">
+                <a class="page-link" href="/index.php?r=/&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+              </li>
+            <?php }?>
+            <li class="page-item <?php if ($currentPage == $pageNumber) { echo 'active'; } ?>">
+              <a class="page-link" href="/index.php?r=/&page=<?php echo $pageNumber; ?>">Last page</a>
+            </li>
+          </ul>
+        </nav>
 
   </body>
 </html>
