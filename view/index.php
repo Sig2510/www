@@ -32,7 +32,7 @@
   </div>
 </div></li>&nbsp;&nbsp;
 
-  <b>Most recent comment:</b> <?php 
+  <b>Most recent comment:</b> <?php
 
   ?>
 

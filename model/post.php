@@ -34,8 +34,8 @@ private $postsOnPage;
     public function getPostsWithCommentsCount($pageNumber) {
       $offsetValue = ($pageNumber - 1) * $this->postsOnPage;
       $stmt = $this->conn->prepare('SELECT p.id, p.author, p.title, p.body, COUNT(c.id) as comments_count
-      FROM posts as p LIMIT :lim OFFSET :offs LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
-      ORDER BY creation_date DESC');
+      FROM posts as p LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
+      ORDER BY creation_date DESC LIMIT :lim OFFSET :offs');
       $stmt->bindParam(':lim', $this->postsOnPage, PDO::PARAM_INT);
       $stmt->bindParam(':offs', $offsetValue, PDO::PARAM_INT);
       $stmt->execute();
@@ -66,7 +66,7 @@ return $this->conn->LastInsertId();
     }
 
     public function recentComment() {
-      $res = $this->conn->query('SELECT body FROM comments ORDER BY commentdata DESC' );
+      $res = $this->conn->query('SELECT body FROM comments ORDER BY commentdata DESC LIMIT 1' );
       return $res->fetch(PDO::FETCH_ASSOC);
     }
 
