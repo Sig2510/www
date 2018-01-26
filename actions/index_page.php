@@ -16,6 +16,9 @@
 
       $posts = $this->postModel->getPostsWithCommentsCount($currentPage);
       $pageNumber = $this->postModel->pageNumber();
+     if (isset($this->session['username'])) {
+       echo 'Hello, ' . $this->session['username'] . '!';
+     }
       require_once './view/index.php';
     }
   }

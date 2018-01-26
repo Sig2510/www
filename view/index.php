@@ -26,17 +26,26 @@
     Sort By
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Author</button>
-    <button class="dropdown-item" type="button">Date</button>
-    <button class="dropdown-item" type="button">title name</button>
+    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="author">Author</button>
+    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="creation_date">Date</button>
+    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="title">title</button>
   </div>
 </div></li>&nbsp;&nbsp;
 
-  <b>Most recent comment:</b> <?php
 
+  <b>Most recent comment:</b>&nbsp;&nbsp; <?php
+    print_r ($this->postModel->recentComment());
   ?>
 
-  </div>
+  <?php if ($this->isLoggedIn()) { ?>
+              <form method="POST" action="/index.php?r=/logout">
+                <input type="submit" class="btn btn-danger" name="logout" value="Logout!">
+              </form>
+            <?php } else { ?>
+              <a href="/?r=/register">register</a>
+              <a href="/?r=/login">login</a>
+            <?php } ?>
+
 </nav>
 <br>
         <?php foreach ($posts as $index => $post) { ?>

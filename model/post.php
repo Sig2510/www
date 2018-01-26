@@ -40,6 +40,12 @@ private $postsOnPage;
       $stmt->bindParam(':offs', $offsetValue, PDO::PARAM_INT);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      if (isset($_GET['sort_by'])) {
+        $sortby = $_GET['sort_by'];
+      }
+      else {
+        $sortby = 'creation_date';
+      }
     }
 
     public function getPost($id) {
@@ -66,7 +72,7 @@ return $this->conn->LastInsertId();
     }
 
     public function recentComment() {
-      $res = $this->conn->query('SELECT body FROM comments ORDER BY commentdata DESC LIMIT 1' );
+      $res = $this->conn->query('SELECT body FROM comments ORDER BY commentdata DESC LIMIT 1');
       return $res->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -76,5 +82,7 @@ return $this->conn->LastInsertId();
 
      return ceil($totalNumber / $this->postsOnPage);
    }
+
+
 
 }
