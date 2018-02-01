@@ -24,12 +24,36 @@ private $postsOnPage;
 
       return $errors;
     }
-    public function getPosts() {
 
-      $res = $this->conn->query('SELECT * FROM posts ORDER BY creation_date DESC ' );
-      return $res->fetchALL(PDO::FETCH_ASSOC);
+     public function getPosts($sortType) {
 
-    }
+       switch ($sortType) {
+        case 'Date':
+        $query = 'SELECT p.id, p.author, p.title, p.body, COUNT(c.id) as comments_count
+        FROM posts as p LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
+        ORDER BY creation_date DESC LIMIT :lim OFFSET :offs';
+        break;
+        case 'Title':
+        $query = 'SELECT p.id, p.author, p.title, p.body, COUNT(c.id) as comments_count
+        FROM posts as p LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
+        ORDER BY title DESC LIMIT :lim OFFSET :offs';
+        break;
+        case 'Author':
+        $query = 'SELECT p.id, p.author, p.title, p.body, COUNT(c.id) as comments_count
+        FROM posts as p LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
+        ORDER BY author DESC LIMIT :lim OFFSET :offs';
+        break;
+        default:
+        $query = 'SELECT p.id, p.author, p.title, p.body, COUNT(c.id) as comments_count
+        FROM posts as p LEFT JOIN comments as c ON p.id = c.post_id GROUP BY p.id
+        ORDER BY creation_date DESC LIMIT :lim OFFSET :offs';
+        break;
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':lim', $this->postsOnPage, PDO::PARAM_INT);
+        $stmt->bindParam(':offs', $offsetValue, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchALL(PDO::FETCH_ASSOC);
+     }}
 
     public function getPostsWithCommentsCount($pageNumber) {
       $offsetValue = ($pageNumber - 1) * $this->postsOnPage;
@@ -40,12 +64,6 @@ private $postsOnPage;
       $stmt->bindParam(':offs', $offsetValue, PDO::PARAM_INT);
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
-      if (isset($_GET['sort_by'])) {
-        $sortby = $_GET['sort_by'];
-      }
-      else {
-        $sortby = 'creation_date';
-      }
     }
 
     public function getPost($id) {

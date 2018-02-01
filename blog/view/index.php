@@ -11,7 +11,11 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/"><b>Hello, user!</b></a>
+  <a class="navbar-brand" href="/"><b>Hello,
+    <?php if (isset($this->session['username'])) {
+    echo $this->session['username'] . '!';
+  }
+  else echo 'user';?></b></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,31 +24,29 @@
       <button type="button" class="btn btn-secondary">
         add new post <span class="sr-only">(current)</span>
       </button></a>&nbsp;&nbsp;<li></ul>
-      <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
-  aria-haspopup="true" aria-expanded="false">
-    Sort By
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="author">Author</button>
-    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="creation_date">Date</button>
-    <button class="dropdown-item" type="text" name="sort_by" placeholder="sort_by" value="title">title</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Author</a>
+    <a class="dropdown-item" href="#">Date</a>
+    <a class="dropdown-item" href="#">title</a>
   </div>
-</div></li>&nbsp;&nbsp;
-
-
+</div>
+</li>&nbsp;&nbsp;
   <b>Most recent comment:</b>&nbsp;&nbsp; <?php
     print_r ($this->postModel->recentComment());
-  ?>
+  ?>&nbsp;&nbsp;
 
   <?php if ($this->isLoggedIn()) { ?>
               <form method="POST" action="/index.php?r=/logout">
                 <input type="submit" class="btn btn-danger" name="logout" value="Logout!">
               </form>
             <?php } else { ?>
-              <a href="/?r=/register">register</a>
+              <a href="/?r=/register">register</a>&nbsp;&nbsp;
               <a href="/?r=/login">login</a>
-            <?php } ?>
+            <?php } ?></div>
 
 </nav>
 <br>

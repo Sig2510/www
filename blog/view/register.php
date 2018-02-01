@@ -14,7 +14,8 @@
       <div class="row justify-content-md-center">
         <div class="col-md-10">
 
-          <form method="POST" action="/index.php?r=/login" class="form">
+          <form method="POST" action="/index.php?r=/register" class="form">
+
               <input type="text" name="username" placeholder="username">
               <input type="password" name="password" placeholder="password">
               <input type="password" name="password_approve" placeholder="password_approve">
