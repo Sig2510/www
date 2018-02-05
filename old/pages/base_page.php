@@ -1,13 +1,11 @@
 <?php
 
 class BasePage {
-  protected $getData, $postData, $userSessionModel;
+  protected $getData, $postData;
 
   public function process($method, $getData, $postData) {
     $this->getData = $getData;
     $this->postData = $postData;
-
-    $this->userSessionModel = new UserSession();
 
     switch ($method) {
       case 'GET':
@@ -17,10 +15,6 @@ class BasePage {
         $this->post();
         break;
     }
-  }
-
-  protected function redirect($url) {
-    header('location: /index.php?r=' . $url);
   }
 
   protected function get() {
