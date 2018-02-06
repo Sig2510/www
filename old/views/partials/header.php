@@ -37,7 +37,15 @@
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
+          </button><li>
+          <?php if ($this->userSessionModel->isLoggedIn()) { ?>
+            <form method="POST" action="/index.php?r=/logout">
+              <input type="submit" class="btn btn-default" value="Logout">
+            </form>
+          <?php } else { ?>
+            <a class="btn btn-default" href="/index.php?r=/register">Register</a>
+            <a class="btn btn-default" href="/index.php?r=/login">Login</a>
+          <?php } ?></li>
         </div>
       </div>
     </header>
