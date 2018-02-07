@@ -2,6 +2,7 @@
 
 class AdminPage extends BasePage {
   protected function get() {
-    echo 'hello from Admin Page';
+    header('location: ./views/admin_page.php');
   }
+
 }
