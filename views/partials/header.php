@@ -31,21 +31,24 @@
         </div>
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="/index.php?r=/" class="navbar-brand d-flex align-items-left">
-          <strong>Food Delivery</strong>
-          </a>
-          <?php if ($this->userSessionModel->isLoggedIn()) { ?>
-            <form method="POST" action="/index.php?r=/logout">
-              <input type="submit" class="btn btn-default" value="Logout">
-            </form>
-          <?php } else { ?><div align="left">
-            <a class="btn btn-default" href="/index.php?r=/register">Register</a>
-            <a class="btn btn-default" href="/index.php?r=/login">Login</a></div>
-          <?php } ?>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <div class="container d-flex justify-content-end align-self-center">
+            <a href="/index.php?r=/" class="navbar-brand mr-auto ">
+              <strong>Food Delivery</strong>
+            </a>
+            <?php if ($this->userSessionModel->isLoggedIn()) { ?>
+
+                <form method="POST" action="/index.php?r=/logout">
+                  <input type="submit" class="btn btn-default" value="Logout">
+                </form>
+
+            <?php } else { ?><div align="left">
+              <a class="btn btn-default" href="/index.php?r=/register">Register</a>
+              <a class="btn btn-default" href="/index.php?r=/login">Login</a></div>
+            <?php } ?>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
         </div>
       </div>
     </header>
