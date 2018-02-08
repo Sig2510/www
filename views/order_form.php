@@ -8,7 +8,7 @@
         <input type="text" class="form-control" placeholder="Enter your address" name="address">
       </div>
 
-      <button type="submit" class="btn btn-primary">Post Your Order</button>
+      <button type="submit" class="btn btn-success">Post Your Order</button>
     </form>
   </div>
 </div>
