@@ -40,11 +40,11 @@
             </a>&emsp;
             <?php if ($this->userSessionModel->isLoggedIn()) { ?>
 
-                <form method="POST" action="/index.php?r=/logout">
-                  <input type="submit" class="btn btn-danger" value="Logout" >
+                <form method="POST" action="/index.php?r=/logout" >
+                  <input type="submit" class="btn btn-danger" value="Logout" style="margin-top: 15px;">
                 </form>
 
-            <?php } else { ?><div class="d-flex align-items-center" align="left">
+            <?php } else { ?><div class="d-flex align-items-center" align="left" style="margin-top: 15px; margin-bottom: 15px;">
               <a class="navbar-brand mr-auto" href="/index.php?r=/register">Register</a>&emsp;
               <a class="navbar-brand mr-auto" href="/index.php?r=/login">Login</a></div>
             <?php } ?>

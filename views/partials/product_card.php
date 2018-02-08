@@ -3,6 +3,6 @@
   <p class="card-text"><?php echo $product['title']; ?></p>
   <form method="POST" action="/index.php?r=/cart/add">
     <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-    <input type="submit" class="btn btn-primary" value="Add to cart">
+    <input type="submit" class="btn btn-success" value="Add to cart">
   </form>
 </div>
