@@ -17,7 +17,6 @@
         <td><?php echo $lineItems[$product['id']] * $product['price']; ?></td>
       </tr>
     <?php }?>
-
   </tbody>
   <tfoot>
     <tr>
