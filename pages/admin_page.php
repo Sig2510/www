@@ -1,8 +1,14 @@
 <?php
 
 class AdminPage extends BasePage {
-  protected function get() {
-    header('location: ./views/admin_page.php');
+  private $orderModel;
+
+  public function __construct() {
+    $this->orderModel = new Order();
   }
 
+  protected function get() {
+    $orders = $this->orderModel->getOrders();
+    require_once './views/admin/admin_page.php';
+  }
 }

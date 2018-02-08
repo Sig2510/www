@@ -32,23 +32,25 @@
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-end align-self-center">
-            <a href="/index.php?r=/" class="navbar-brand mr-left ">
-              <strong>Home Page</strong>
-            </a>&emsp;
-            <a href="/index.php?r=/cart" class="navbar-brand mr-auto ">
-              <strong>Cart</strong>
-            </a>&emsp;
+            <a href="/index.php?r=/" class="navbar-brand mr-auto ">
+              <strong>Food Delivery</strong>
+            </a>
             <?php if ($this->userSessionModel->isLoggedIn()) { ?>
 
                 <form method="POST" action="/index.php?r=/logout">
-                  <input type="submit" class="btn btn-danger" value="Logout" >
+                  <input type="submit" class="btn btn-default" value="Logout">
                 </form>
 
             <?php } else { ?><div class="d-flex align-items-center" align="left">
-              <a class="navbar-brand mr-auto" href="/index.php?r=/register">Register</a>&emsp;
-              <a class="navbar-brand mr-auto" href="/index.php?r=/login">Login</a></div>
+              <a class="btn btn-default" href="/index.php?r=/register">Register</a>
+              <a class="btn btn-default" href="/index.php?r=/login">Login</a></div>
             <?php } ?>
-            </div></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button></div></div>
+
+        </div>
+      </div>
     </header>
   <body>
 

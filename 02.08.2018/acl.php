@@ -5,7 +5,7 @@ class ACL {
   private $userModel;
 
   private $anonWhiteList = ['/', '/login', '/register'];
-  private $userWhiteList = ['/', '/logout', '/cart', '/cart/add', '/cart/substract'];
+  private $userWhiteList = ['/', '/logout'];
 
   public function __construct() {
     $this->userSessionModel = new UserSession();

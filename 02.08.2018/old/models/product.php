@@ -18,14 +18,4 @@ class Product extends BaseModel {
     $this->queryByCategoryId->execute([$id]);
     return $this->queryByCategoryId->fetchAll(PDO::FETCH_ASSOC);
   }
-
-  public function getProductsByIds($ids) {
-    $in = str_repeat('?,', count($ids)-1) . '?';
-    $q = 'SELECT * FROM products WHERE id IN (' . $in . ')';
-
-    $stmt = $this->conn->prepare($q);
-    $stmt->execute($ids);
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-  }
 }
