@@ -43,7 +43,17 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = $request->isMethod('put') ? Tasks::findOrFail($request->task_id) : new Tasks;
+
+        $task->id = $request->input('task_id');
+        $task->tasks = $request->input('tasks');
+        $task->assigned_to = $request->input('assigned to');
+        $task->status = $request->input('status');
+
+        if($task->save()){
+            return new TaskResource($tasks);
+        }
+
     }
 
     /**
@@ -54,7 +64,11 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
+        // Get Task
+        $task = Tasks::findOrFail($id);
+
+        // Return Single Task as a resource
+        return new TaskResource($task);
     }
 
     /**
@@ -88,6 +102,12 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+      // Get Task
+      $task = Tasks::findOrFail($id);
+
+      if($task->delete())
+        {
+      return new TaskResource($task);
+        }
     }
 }
