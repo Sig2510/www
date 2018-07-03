@@ -18,7 +18,7 @@ class TasksController extends Controller
     {
         // Get articles
 
-        $tasks = tasks::paginate(15);
+        $tasks = tasks::orderBy('created_at', 'desc')->paginate(15);
 
         // Return collection of tasks as a resorce
 
